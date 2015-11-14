@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bUu-iX-LsX">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Recordorama-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,138 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NEY-bG-ukx">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="microphone"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="151" y="250" width="100" height="100"/>
+                                </variation>
+                                <connections>
+                                    <action selector="recordAudio:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6aC-ME-8FS"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2s-YM-z0P">
+                                <rect key="frame" x="149" y="354" width="105" height="64"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hwi-px-dwh">
+                                        <rect key="frame" x="20" y="20" width="65" height="24"/>
+                                        <subviews>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="recording" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUV-Lh-oQq">
+                                                <rect key="frame" x="20" y="20" width="65" height="24"/>
+                                                <fontDescription key="fontDescription" name="KannadaSangamMN" family="Kannada Sangam MN" pointSize="16"/>
+                                                <color key="textColor" red="0.0" green="0.25098040699958801" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <variation key="widthClass=compact" axis="vertical" ambiguous="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                        </variation>
+                                    </stackView>
+                                </subviews>
+                                <variation key="widthClass=compact" axis="vertical" fixedFrame="YES">
+                                    <rect key="frame" x="169" y="374" width="0.0" height="0.0"/>
+                                </variation>
+                            </stackView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oq3-bs-Aeg">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="stoprecording"/>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="176" y="434" width="50" height="50"/>
+                                </variation>
+                                <connections>
+                                    <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="31T-P2-neW"/>
+                                    <segue destination="XfK-in-0o7" kind="show" id="Hdc-zQ-YXV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Oq3-bs-Aeg" firstAttribute="top" secondItem="NEY-bG-ukx" secondAttribute="bottom" constant="84" id="2le-3a-SDV"/>
+                            <constraint firstItem="Oq3-bs-Aeg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="40Z-8D-VS1"/>
+                            <constraint firstItem="GUV-Lh-oQq" firstAttribute="top" secondItem="NEY-bG-ukx" secondAttribute="bottom" constant="24" id="EA7-iT-4QD"/>
+                            <constraint firstItem="NEY-bG-ukx" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Mqc-q7-j7V"/>
+                            <constraint firstItem="GUV-Lh-oQq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zbp-sB-G5J"/>
+                            <constraint firstItem="NEY-bG-ukx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gmR-Ey-WHA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="NEY-bG-ukx"/>
+                                <exclude reference="Oq3-bs-Aeg"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Mqc-q7-j7V"/>
+                                <exclude reference="gmR-Ey-WHA"/>
+                                <exclude reference="2le-3a-SDV"/>
+                                <exclude reference="40Z-8D-VS1"/>
+                                <exclude reference="EA7-iT-4QD"/>
+                                <exclude reference="Zbp-sB-G5J"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="NEY-bG-ukx"/>
+                                <include reference="Oq3-bs-Aeg"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Mqc-q7-j7V"/>
+                                <include reference="gmR-Ey-WHA"/>
+                                <include reference="2le-3a-SDV"/>
+                                <include reference="40Z-8D-VS1"/>
+                                <include reference="EA7-iT-4QD"/>
+                                <include reference="Zbp-sB-G5J"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <navigationItem key="navigationItem" title="Recordorama" id="a9d-PT-CSP"/>
+                    <connections>
+                        <outlet property="recordButton" destination="NEY-bG-ukx" id="qXf-xS-ypN"/>
+                        <outlet property="recordingInprogress" destination="GUV-Lh-oQq" id="FRm-AB-qlE"/>
+                        <outlet property="stopRecordingButton" destination="Oq3-bs-Aeg" id="Voy-4M-vMj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1222.5" y="365"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="kPu-Kj-q9a">
+            <objects>
+                <viewController id="XfK-in-0o7" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Fg-Vv-a74"/>
+                        <viewControllerLayoutGuide type="bottom" id="Olo-hX-qWj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="inX-Ry-yCb">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wgi-la-dVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2014.5" y="365"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wmU-ij-Yps">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bUu-iX-LsX" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eiQ-U7-oHb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="rTb-cZ-UZI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hzl-Oo-qTU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="304.5" y="365"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="microphone" width="100" height="100"/>
+        <image name="stoprecording" width="50" height="50"/>
+    </resources>
 </document>
