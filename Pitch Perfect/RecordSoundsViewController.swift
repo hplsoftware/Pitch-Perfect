@@ -78,7 +78,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
     
-        //set the name of the recording
+        //set the name of the recording so it overwrites every time
         let recordingName = "my_audio.wav"
         
         let pathArray = [dirPath, recordingName]
