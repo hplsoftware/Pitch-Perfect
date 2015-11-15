@@ -11,18 +11,19 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
 
-    //instance of audio kit
-    var audioPlayer: AVAudioPlayer!
-    var audioPlayerEcho: AVAudioPlayer!
-    var receivedAudio: RecordedAudio!
-    
-    var audioEngine: AVAudioEngine!
-    var audioFile: AVAudioFile!
+    //declare needed class objects
+    private var audioPlayer: AVAudioPlayer!
+    private var audioPlayerEcho: AVAudioPlayer!
+    private var audioPlayerNode: AVAudioPlayerNode!
+    internal var receivedAudio: RecordedAudio!
+    private var audioEngine: AVAudioEngine!
+    private var audioFile: AVAudioFile!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        //instantiate the engine and player objects
         audioEngine = AVAudioEngine()
         audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl)
         
@@ -32,22 +33,27 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerEcho = try! AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
         audioPlayerEcho.enableRate = true
         
+        audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
     }
+    
     @IBAction func stopPlayBack(sender: UIButton) {
         
          audioPlayer.stop()
-        
+         audioPlayerNode.stop()
+        audioPlayerEcho.stop()
     }
 
     @IBAction func playFastRecording(sender: UIButton) {
         
-       PlayRecordedAudio(2.0)
+       PlayRecordedAudio(2.0,avp: audioPlayer)
         
     }
     
     @IBAction func playSlowRecording(sender: UIButton) {
         
-       PlayRecordedAudio(0.5)
+        PlayRecordedAudio(0.5,avp: audioPlayer)
         
     }
     
@@ -61,7 +67,7 @@ class PlaySoundsViewController: UIViewController {
         
         ResetPlayerForStart()
         
-         playAudioWithVariablePitch(-1000)
+        playAudioWithVariablePitch(-1000)
     }
     
     @IBAction func playReverb(sender: UIButton) {
@@ -69,12 +75,14 @@ class PlaySoundsViewController: UIViewController {
         playAudioWithVariableEcho(0.5)
         
     }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
     func playAudioWithVariablePitch(pitch: Float){
         
         ResetPlayerForStart()
-        
-        let audioPlayerNode = AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
         
         let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
@@ -91,6 +99,7 @@ class PlaySoundsViewController: UIViewController {
     
     func ResetPlayerForStart(){
         
+        audioPlayerNode.stop()
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
@@ -99,27 +108,26 @@ class PlaySoundsViewController: UIViewController {
 
     func playAudioWithVariableEcho(delay: Double){
         
-        PlayRecordedAudio(1.0)
+        PlayRecordedAudio(1.0,avp: audioPlayer)
         
         let delayEcho: NSTimeInterval = delay//0.1 = 100ms
         var playtime: NSTimeInterval
+        
+        //set the start time for playing
         playtime = audioPlayerEcho.deviceCurrentTime + delayEcho
+        
         audioPlayerEcho.stop()
         audioPlayerEcho.currentTime = 0
         audioPlayerEcho.volume = 0.8;
         audioPlayerEcho.playAtTime(playtime)
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    func PlayRecordedAudio(num:Float){
+    func PlayRecordedAudio(num:Float,avp: AVAudioPlayer){
         
         ResetPlayerForStart()
         
-        audioPlayer.currentTime = 0.0
-        audioPlayer.rate = num
-        audioPlayer.play();
+        avp.currentTime = 0.0
+        avp.rate = num
+        avp.play();
     }
 }

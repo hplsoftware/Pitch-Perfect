@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Recordorama-->
+        <!--Recorder-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
@@ -100,7 +100,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Recordorama" id="a9d-PT-CSP"/>
+                    <navigationItem key="navigationItem" title="Recorder" id="a9d-PT-CSP"/>
                     <connections>
                         <outlet property="recordButton" destination="NEY-bG-ukx" id="qXf-xS-ypN"/>
                         <outlet property="recordingInprogress" destination="GUV-Lh-oQq" id="FRm-AB-qlE"/>
