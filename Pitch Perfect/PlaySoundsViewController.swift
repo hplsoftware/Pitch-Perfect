@@ -40,9 +40,7 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func stopPlayBack(sender: UIButton) {
         
-        audioPlayer.stop()
-        audioPlayerNode.stop()
-        audioPlayerEcho.stop()
+        resetPlayer()
     }
 
     @IBAction func playFastRecording(sender: UIButton) {
@@ -75,7 +73,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithVariablePitch(pitch: Float){
         
-        resetPlayerForStart()
+        resetPlayer()
         
         let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
@@ -90,13 +88,12 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     
-    func resetPlayerForStart(){
+    func resetPlayer(){
         
         audioPlayerNode.stop()
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
-        
     }
 
     func playAudioWithVariableEcho(delay: Double){
@@ -117,7 +114,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playRecordedAudio(num:Float,avp: AVAudioPlayer){
         
-        resetPlayerForStart()
+        resetPlayer()
         
         avp.currentTime = 0.0
         avp.rate = num

@@ -58,7 +58,6 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
             //grab the data to send
             let data = sender as! RecordedAudio
             playSoundsVC.receivedAudio = data
-            
         }
     }
     
@@ -105,11 +104,9 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
             
             //perform segue
             self.performSegueWithIdentifier("stopRecording", sender: recordedAudio)
-            
         }else{
             
             setRecordUIState(true)
-            
         }
     }
     
@@ -117,13 +114,11 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         
         stopRecordingButton.hidden = state;
         recordButton.enabled = state;
-        
     }
     
     func setRecordingLabelText(textToShow: String){
         
          recordingInprogress.text = textToShow
-        
     }
 }
 
