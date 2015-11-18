@@ -38,7 +38,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         try! audioSession.setActive(false)
 
         //ui updates
-        SetRecordUIState(true)
+        setRecordUIState(true)
     }
     override func viewWillAppear(animated: Bool) {
         stopRecordingButton.hidden = true;
@@ -50,7 +50,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         if(segue.identifier == "stopRecording"){
             
             //change the progress lable for our return
-            SetRecordingLabelText("Tap To Record")
+            setRecordingLabelText("Tap To Record")
             
             //set the destination controller
             let playSoundsVC: PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
@@ -65,7 +65,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
     @IBAction func recordAudio(sender: UIButton) {
         
         //ui changes
-        SetRecordUIState(false)
+        setRecordUIState(false)
         
         //set the directory to store recording
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
@@ -91,7 +91,7 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
         audioRecorder.record()
         
         //UI updates
-        SetRecordingLabelText("Recording In Progress")
+        setRecordingLabelText("Recording In Progress")
         
     }
     
@@ -108,19 +108,19 @@ class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate {
             
         }else{
             
-            SetRecordUIState(true)
+            setRecordUIState(true)
             
         }
     }
     
-    func SetRecordUIState(state: Bool){
+    func setRecordUIState(state: Bool){
         
         stopRecordingButton.hidden = state;
         recordButton.enabled = state;
         
     }
     
-    func SetRecordingLabelText(textToShow: String){
+    func setRecordingLabelText(textToShow: String){
         
          recordingInprogress.text = textToShow
         

@@ -40,32 +40,26 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func stopPlayBack(sender: UIButton) {
         
-         audioPlayer.stop()
-         audioPlayerNode.stop()
+        audioPlayer.stop()
+        audioPlayerNode.stop()
         audioPlayerEcho.stop()
     }
 
     @IBAction func playFastRecording(sender: UIButton) {
         
-       PlayRecordedAudio(2.0,avp: audioPlayer)
-        
+       playRecordedAudio(2.0,avp: audioPlayer)
     }
     
     @IBAction func playSlowRecording(sender: UIButton) {
         
-        PlayRecordedAudio(0.5,avp: audioPlayer)
-        
+        playRecordedAudio(0.5,avp: audioPlayer)
     }
     
     @IBAction func playChipmunk(sender: UIButton) {
         
-        ResetPlayerForStart()
-        
         playAudioWithVariablePitch(1000)
     }
     @IBAction func playVader(sender: UIButton) {
-        
-        ResetPlayerForStart()
         
         playAudioWithVariablePitch(-1000)
     }
@@ -73,7 +67,6 @@ class PlaySoundsViewController: UIViewController {
     @IBAction func playReverb(sender: UIButton) {
         
         playAudioWithVariableEcho(0.5)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -82,7 +75,7 @@ class PlaySoundsViewController: UIViewController {
     
     func playAudioWithVariablePitch(pitch: Float){
         
-        ResetPlayerForStart()
+        resetPlayerForStart()
         
         let changePitchEffect = AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
@@ -97,7 +90,7 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     
-    func ResetPlayerForStart(){
+    func resetPlayerForStart(){
         
         audioPlayerNode.stop()
         audioPlayer.stop()
@@ -108,7 +101,7 @@ class PlaySoundsViewController: UIViewController {
 
     func playAudioWithVariableEcho(delay: Double){
         
-        PlayRecordedAudio(1.0,avp: audioPlayer)
+        playRecordedAudio(1.0,avp: audioPlayer)
         
         let delayEcho: NSTimeInterval = delay//0.1 = 100ms
         var playtime: NSTimeInterval
@@ -122,9 +115,9 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerEcho.playAtTime(playtime)
     }
     
-    func PlayRecordedAudio(num:Float,avp: AVAudioPlayer){
+    func playRecordedAudio(num:Float,avp: AVAudioPlayer){
         
-        ResetPlayerForStart()
+        resetPlayerForStart()
         
         avp.currentTime = 0.0
         avp.rate = num
